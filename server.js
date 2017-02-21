@@ -16,9 +16,11 @@ app.get("/ Article-Two.html",function(req,res){
 });
 app.get("/ Article-Three.html",function(req,res){
   res.send("article Three are requsted and will be served here") ; 
+  res.sendFile(path.join(__dirname, 'ui', 'Article-Three.html'));
 });
 app.get("/ Article-Four",function(req,res){
   res.send("article Four are requsted and will be served here") ; 
+  res.sendFile(path.join(__dirname, 'ui', 'Article-Four.html'));
 });
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
