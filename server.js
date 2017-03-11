@@ -2,6 +2,7 @@ var express = require('express');
  var morgan = require('morgan');
  var path = require('path');
  var pool=require("pg").pool;
+ var crypto=require("crypto");
  
  var config={
      user:'deshmukhsuraj',
@@ -38,6 +39,17 @@ var express = require('express');
   res.sendFile(path.join(__dirname, 'ui', 'Article-Three.html'));
   
  });
+ function hashcode(input,salt){
+     var hashed=crypto.pdkdf25Sync(input,salt,10000,512,'sha512');
+     return hashed.toString('hex');
+     
+ }
+app.get('/hash/:input',function(req,res){
+  var passwordString=hash(req.params.input,'this is some random string');
+  res.send(passwordString);
+});
+
+
 
      
  app.get("/ Article-Four",function(req,res){
